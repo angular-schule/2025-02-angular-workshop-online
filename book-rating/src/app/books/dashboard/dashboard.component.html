@@ -1,1 +1,3 @@
-<app-book [book]="books()[0]" />
+@for (b of books(); track b.isbn) {
+<app-book [book]="b" />
+}
