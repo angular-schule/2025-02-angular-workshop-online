@@ -9,5 +9,5 @@ import { DashboardComponent } from './books/dashboard/dashboard.component';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'Book Rating';
+  readonly title = 'Book Rating';
 }
