@@ -14,6 +14,8 @@ export class BookComponent {
   // von oben nach unten
   readonly book = input.required<Book>();
 
+  // Output: hier fließen Daten zur Elternkomponente
+  // von unten nach oben
   readonly rateUp = output<Book>();
   readonly rateDown = output<Book>();
 

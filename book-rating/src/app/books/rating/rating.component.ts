@@ -9,5 +9,5 @@ import { Component, computed, input } from '@angular/core';
 export class RatingComponent {
   readonly value = input.required<number>();
 
-  readonly ratingArray = computed(() => new Array(Math.max(this.value() || 0)));
+  readonly ratingArray = computed(() => new Array(Math.max(Math.round(this.value()) || 0)));
 }
