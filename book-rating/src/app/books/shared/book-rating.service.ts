@@ -9,10 +9,22 @@ export class BookRatingService {
   constructor() { }
 
   rateUp(book: Book): Book {
-    return book; // TODO
+    return {
+      ...book,
+      rating: Math.min(book.rating + 1, 5)
+    };
   }
 
   rateDown(book: Book): Book {
-    return book; // TODO
+    if (book.rating <= 1) {
+      return book;
+    }
+
+    const newRating = book.rating - 1;
+
+    return {
+      ...book,
+      rating: newRating
+    };
   }
 }
