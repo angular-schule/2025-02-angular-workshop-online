@@ -28,3 +28,26 @@ export class BookRatingService {
     };
   }
 }
+
+
+
+const myObj = {
+  title: 'Angular',
+  year: 2025,
+  author: {
+    firstname: 'F',
+    lastname: 'M'
+  }
+}
+
+const myCopy = {
+  ...myObj,
+  author: {
+    ...myObj.author,
+    firstname: 'L'
+  }
+}
+
+
+// Deep Copy
+const myCopy2 = structuredClone(myObj);
