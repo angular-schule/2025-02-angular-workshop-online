@@ -14,6 +14,16 @@ describe('BookComponent', () => {
 
     fixture = TestBed.createComponent(BookComponent);
     component = fixture.componentInstance;
+
+    // Required Input setzen
+    fixture.componentRef.setInput('book', {
+      isbn: '123',
+      title: 'Angular',
+      description: '',
+      rating: 4,
+      price: 3
+    });
+
     fixture.detectChanges();
   });
 

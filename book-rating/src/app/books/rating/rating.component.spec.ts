@@ -12,8 +12,13 @@ describe('RatingComponent', () => {
     })
     .compileComponents();
 
+
     fixture = TestBed.createComponent(RatingComponent);
     component = fixture.componentInstance;
+
+    // Required Input setzen
+    fixture.componentRef.setInput('value', 3);
+
     fixture.detectChanges();
   });
 
