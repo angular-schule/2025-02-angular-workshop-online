@@ -16,4 +16,17 @@ export class BookStoreService {
   getAll(): Observable<Book[]> {
     return this.#http.get<Book[]>(this.#apiUrl + '/books');
   }
+
+  // AUFGABE: Diese Methoden implementieren
+  getSingle(isbn: string): Observable<Book> {
+    return this.#http.get<Book>(this.#apiUrl + '/books/' + isbn);
+  }
+
+  create(book: Book): Observable<Book> {
+    return this.#http.post<Book>(this.#apiUrl + '/books', book)
+  }
+
+  search(term: string): Observable<Book[]> {
+    return this.#http.get<Book[]>(this.#apiUrl + '/books/search/' + term);
+  }
 }
