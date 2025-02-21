@@ -10,16 +10,3 @@ import { RouterOutlet } from '@angular/router';
 export class AppComponent {
   readonly title = 'Book Rating';
 }
-
-/*
-TODO:
-- Redirect von Startseite ✅
-- Wildcard-Route ✅
-- Links
-  - BookComponent => Detailseite
-  - Detailseite => Dashboard
-- Detailseite
-  - Parameter aus der URL
-  - …
-
-*/
