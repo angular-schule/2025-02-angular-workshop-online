@@ -17,7 +17,6 @@ export class BookStoreService {
     return this.#http.get<Book[]>(this.#apiUrl + '/books');
   }
 
-  // AUFGABE: Diese Methoden implementieren
   getSingle(isbn: string): Observable<Book> {
     return this.#http.get<Book>(this.#apiUrl + '/books/' + isbn);
   }

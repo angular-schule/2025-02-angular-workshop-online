@@ -1,5 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { BookStoreService } from '../shared/book-store.service';
+import { Book } from '../shared/book';
 
 @Component({
   selector: 'app-book-details',
@@ -9,6 +11,9 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 })
 export class BookDetailsComponent {
   #route = inject(ActivatedRoute);
+  #bs = inject(BookStoreService);
+
+  readonly book = signal<Book | undefined>(undefined);
 
   constructor() {
     // PULL
@@ -16,10 +21,17 @@ export class BookDetailsComponent {
     // console.log(isbn);
 
     // PUSH
+    // TODO: Verschachtelte Subscriptions vermeiden
     this.#route.paramMap.subscribe(params => {
-      const isbn = params.get('isbn');
-      console.log(isbn);
+      const isbn = params.get('isbn')!; // Non-Null Assertion
+      this.#bs.getSingle(isbn).subscribe(book => {
+        this.book.set(book);
+      });
     });
+
+    // AUFGABE:
+    // - HTTP Buch abrufen
+    // - Buch anzeigen (ganz einfach)
   }
 }
 
