@@ -12,6 +12,7 @@ describe('AppComponent', () => {
       ]*/
     })
     .overrideComponent(AppComponent, {
+      // Shallow Component Test
       set: { imports: [], schemas: [NO_ERRORS_SCHEMA] }
     }).compileComponents();
   });
