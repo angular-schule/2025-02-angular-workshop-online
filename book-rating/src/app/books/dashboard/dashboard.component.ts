@@ -33,6 +33,18 @@ export class DashboardComponent {
     this.#updateList(ratedBook);
   }
 
+  doDeleteBook(book: Book) {
+    this.#bs.delete(book.isbn).subscribe(() => {
+      // lokal filtern
+      // this.books.update(books => books.filter(b => b.isbn !== book.isbn));
+
+      // ODER: Buchliste neu laden
+      this.#bs.getAll().subscribe(books => {
+        this.books.set(books);
+      });
+    });
+  }
+
   #updateList(ratedBook: Book) {
     // [1,2,3,4,5].map(e => e * 10) // [10, 20, 30, 40, 50]
     // [1,2,3,4,5].map(e => e) // [1, 2, 3, 4, 5]
