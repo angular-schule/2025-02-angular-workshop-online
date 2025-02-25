@@ -23,19 +23,20 @@ export class DragdropComponent {
   constructor() {
     /**
      * Nutze RxJS, um die rote Box mit Drag-and-drop zu bewegen.
-     * 
+     *
      * Die Methode `setTargetPosition(e: MouseEvent)` ändert die Position der Box.
      * Nutze die Observables `mouseMove$`, `mouseDown$` und `mouseUp$` in einer geeigneten Kombination.
      * Beginne damit, dass die Box am Mauszeiger klebt.
      * Sorge dann dafür, dass dieser Prozess erst beim Klick (`mouseDown$`) beginnt.
      * Beende den Prozess, sobald `mouseUp$` feuert.
-     * 
+     *
      * Zusatz: Erstelle das Signal `targetPosition` mit `toSignal()` direkt aus dem Observable.
      */
 
     /******************************/
 
-    
+    this.mouseMove$.subscribe(e => this.setTargetPosition(e));
+
     /******************************/
   }
 
