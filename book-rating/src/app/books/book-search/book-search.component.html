@@ -3,3 +3,9 @@
     <input type="search" class="form-control" [formControl]="searchControl" />
   </div>
 </form>
+
+<ul>
+  @for (book of books(); track book.isbn) {
+    <li>{{ book.title }} ({{ book.isbn }})</li>
+  }
+</ul>
