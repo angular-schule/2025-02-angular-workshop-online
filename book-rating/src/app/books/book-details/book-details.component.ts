@@ -19,17 +19,18 @@ export class BookDetailsComponent {
     map(params => params.get('isbn')),
     filter(isbn => isbn !== null),
     // filter((isbn): isbn is string => !!isbn) // Type Guard
-    switchMap(isbn => this.#bs.getSingle(isbn)),
+    switchMap(isbn => this.#bs.getSingle(isbn).pipe(
+       // Optionen zur Fehlerbehandlung
+      tap({
+        error: err => {}
+      }),
 
-    // Optionen zur Fehlerbehandlung
-    tap({
-      error: err => {}
-    }),
+      catchError(err => {
+        return EMPTY;
+      })
+    )),
 
-    catchError(err => {
-      // mit Fehler arbeiten
-      return EMPTY;
-    })
+
   ));
 
 }
