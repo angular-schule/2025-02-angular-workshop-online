@@ -31,7 +31,7 @@ export class HigherorderComponent {
     /**************!!**************/
 
     this.result$ = this.source$.pipe(
-      exhaustMap(tier => this.#es.echo(tier))
+      mergeMap(tier => this.#es.echo(tier))
     );
 
     /**************!!**************/

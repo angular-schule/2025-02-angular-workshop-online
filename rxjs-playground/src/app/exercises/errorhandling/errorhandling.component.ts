@@ -24,15 +24,15 @@ export class ErrorhandlingComponent {
         // mit dem Fehler arbeiten
         console.log('CAUGHT:', err);
 
-        // Fehler ersetzen
+        // Fehler ersetzen / next
         // return of('Nichts', 'passiert', '😇');
 
-        // Fehler weiterwerfen
+        // Fehler weiterwerfen / error
         // return new Observable(sub => sub.error('FEHLER'));
         // return throwError(() => 'EIN FEHLER!');
         throw 'NEIN, EIN FEHLER!!';
 
-        // Fehler verschlucken / ignorieren
+        // Fehler verschlucken / ignorieren / complete
         // return new Observable(sub => sub.complete());
         // return of();
         // return EMPTY;

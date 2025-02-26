@@ -49,13 +49,24 @@ export class CreatingComponent {
       sub.next(10);
       sub.next(20);
 
-      setTimeout(() => sub.next(100), 2000);
-      setTimeout(() => sub.complete(), 4000);
+      const timer1 = setTimeout(() => {
+        sub.next(100);
+        console.log('PRODUCER', 100);
+      }, 5000);
+      const timer2 = setTimeout(() => sub.complete(), 10000);
+
+      // Teardown Logic:
+      // // wird ausgeführt, wenn Datenstrom zu Ende ist (unsubscribe oder complete)
+      return () => {
+        console.log('TEARDOWN');
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
     }
 
     // Observer: hört von außen zu
     const obs: Observer<number> = {
-      next:  (e) => console.log(e),
+      next:  (e) => console.log('OBSERVER', e),
       error: (err: any) => console.error(err),
       complete: () => console.log('FERTIG')
     };
@@ -68,7 +79,14 @@ export class CreatingComponent {
 
     // subscribe: Es geht los! Observer übergeben,
     // // intern wird Producer aufgerufen
-    // myObs$.subscribe(obs);
+    // const sub = myObs$.subscribe(obs);
+
+    /*setTimeout(() => {
+      sub.unsubscribe();
+      console.log('UNSUBSCRIBE');
+    }, 3000)*/
+
+
     /*myObs$.subscribe(
       e => console.log(e)
     );*/
