@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { BookStoreService } from '../shared/book-store.service';
 import { Book } from '../shared/book';
-import { filter, map, switchMap } from 'rxjs';
+import { catchError, EMPTY, filter, map, switchMap, tap } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
@@ -19,7 +19,17 @@ export class BookDetailsComponent {
     map(params => params.get('isbn')),
     filter(isbn => isbn !== null),
     // filter((isbn): isbn is string => !!isbn) // Type Guard
-    switchMap(isbn => this.#bs.getSingle(isbn))
+    switchMap(isbn => this.#bs.getSingle(isbn)),
+
+    // Optionen zur Fehlerbehandlung
+    tap({
+      error: err => {}
+    }),
+
+    catchError(err => {
+      // mit Fehler arbeiten
+      return EMPTY;
+    })
   ));
 
 }
